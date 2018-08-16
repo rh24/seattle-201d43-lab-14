@@ -50,9 +50,10 @@ function addSelectedItemToCart() {
   let quantity = Number(form.querySelector('#quantity').value);
   // TODO: using those, add one item to the Cart
   let localCart = JSON.parse(localStorage.getItem('cart'));
-  // debugger;
-  if (localCart.length) {
+  if (localCart) {
     cart.items = localCart.map(cartItem => new CartItem(cartItem.product, cartItem.quantity));
+    cart.addItem(item, quantity);
+  } else {
     cart.addItem(item, quantity);
   }
 }
