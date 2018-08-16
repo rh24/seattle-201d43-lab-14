@@ -57,3 +57,25 @@ function generateCatalog() {
 
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();
+
+
+function generateDropdown() {
+  // grab the select element with class .items
+  let dropdown = document.querySelectorAll('#items')[0];
+  // generate option with id
+  Product.allProducts.forEach(product => {
+    let id = product.name.replace(/\s+/g, '-').toLowerCase();
+    let option = createEl('option', product.name, id);
+    dropdown.appendChild(option);
+  });
+}
+
+function createEl(type, content, id) {
+  let el = document.createElement(type);
+  el.textContent = content;
+  el.id = id;
+
+  return el;
+}
+
+generateDropdown();
