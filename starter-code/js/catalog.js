@@ -66,19 +66,24 @@ function updateCounter() {
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
-  // TODO: Get the item and quantity from the form
+  // TODO: Pull from local storage to update preview of cart items
   let form = document.forms['catalog'];
   let item = form.querySelector('#items').value;
-  let quantity = Number(form.querySelector('#quantity').value);
+  let localQuantity = JSON.parse(localStorage.getItem('cart')).find(cartItem => cartItem.product === item).quantity;
+
   // TODO: Add a new element to the cartContents div with that information
   let preview = document.querySelector('#cartContents');
-  let newDiv = createEl('div', null, item);
-  let image = document.createElement('img');
-  image.src = Product.allProducts.find(product => product.name.replace(/\s+/g, '-').toLowerCase() === item).filePath;
-  newDiv.appendChild(image);
-  newDiv.appendChild(createEl('p', quantity));
-  newDiv.class = 'preview-items';
-  preview.appendChild(newDiv);
+  if (!preview.querySelector(`#${item}`)) {
+    let newDiv = createEl('div', null, item);
+    let image = document.createElement('img');
+    image.src = Product.allProducts.find(product => product.name.replace(/\s+/g, '-').toLowerCase() === item).filePath;
+    newDiv.appendChild(image);
+    newDiv.appendChild(createEl('p', localQuantity));
+    newDiv.class = 'preview-items';
+    preview.appendChild(newDiv);
+  } else {
+    preview.querySelector(`#${item} p`).textContent = localQuantity;
+  }
 }
 
 // Set up the "submit" event listener on the form.
