@@ -77,6 +77,7 @@ function updateCartPreview() {
   image.src = Product.allProducts.find(product => product.name.replace(/\s+/g, '-').toLowerCase() === item).filePath;
   newDiv.appendChild(image);
   newDiv.appendChild(createEl('p', quantity));
+  newDiv.class = 'preview-items';
   preview.appendChild(newDiv);
 }
 
