@@ -33,15 +33,18 @@ function showCart() {
     var colElms = [];
     colElms.push(document.createElement('td'));
     var btnElm = document.createElement('button');
-    btnElm.dataset.itemName = item.product.name;
+    btnElm.dataset.itemName = item.product;
     btnElm.innerText = 'x';
     colElms[0].appendChild(btnElm);
     var quantityElm = document.createElement('td');
     var itemElm = document.createElement('td');
     quantityElm.innerText = item.quantity;
     var itemImg = document.createElement('img');
-    itemImg.src = item.product.filePath;
-    itemImg.alt = `Photo of ${item.product.name}`;
+    var currentProduct = Product.allProducts.find(
+      elm => elm.name.toLowerCase() === item.product
+    );
+    itemImg.src = currentProduct.filePath;
+    itemImg.alt = `Photo of ${item.product}`;
     itemElm.appendChild(itemImg);
     colElms.push(quantityElm);
     colElms.push(itemElm);
