@@ -1,1 +1,15 @@
 /* TODO: Make it awesome */
+
+#cartContents div {
+  border: 2px solid grey;
+  display: inline-block;
+  padding-right: 200px;
+  padding-left: 10px;
+  margin: 0 auto;
+  max-width: 300px;
+}
+
+#cartContents div img {
+  width: 100px;
+  height: 100px;
+}
