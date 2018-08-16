@@ -27,7 +27,6 @@ function clearCart() {
 function showCart() {
   // TODO: Iterate over the items in the cart
   cart.items.forEach(item => {
-    console.log({ item });
     var rowElm = document.createElement('tr');
     rowElm.className = 'table__row';
     var colElms = [];
@@ -49,7 +48,7 @@ function showCart() {
     colElms.push(quantityElm);
     colElms.push(itemElm);
     colElms.forEach(colElm => rowElm.appendChild(colElm));
-    table.appendChild(rowElm);
+    table.tBodies[0].appendChild(rowElm);
   });
   // TODO: Create a TR
   // TODO: Create a TD for the delete link, quantity,  and the item
@@ -60,9 +59,8 @@ function removeItemFromCart(event) {
   // TODO: When a delete link is clicked, use cart.removeItem to remove the correct item
   if (event.target.nodeName === 'BUTTON') {
     var itemToDelete = cart.items.find(
-      item => (item.name = event.target.dataset.itemName)
+      item => item.product === event.target.dataset.itemName
     );
-    console.log(itemToDelete);
     cart.removeItem(itemToDelete);
     // TODO: Save the cart back to local storage
     cart.saveToLocalStorage;
