@@ -8,15 +8,25 @@ var Cart = function(items) {
 
 Cart.prototype.addItem = function(product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  let found = this.items.find(item => item.product === product);
+  if (!found) {
+    this.items.push(new CartItem(product, quantity));
+  } else {
+    found.quantity += quantity;
+  }
 };
 
 Cart.prototype.saveToLocalStorage = function() {
   // TODO: Fill in this instance method to save the contents of the cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(this.items));
 };
 
 Cart.prototype.removeItem = function(item) {
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
+  // let filtered = this.items.filter(item => (item.product !== item.product && item.quantity !== item.quantity));
+  let filtered = this.items.filter(item => item.product !== item.product);
+  this.items = filtered;
 };
 
 var CartItem = function(product, quantity) {
@@ -24,7 +34,7 @@ var CartItem = function(product, quantity) {
   this.quantity = quantity;
 };
 
-// Product contructor.
+// Product constructor.
 var Product = function(filePath, name) {
   this.filePath = filePath;
   this.name = name;
