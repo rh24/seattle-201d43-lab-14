@@ -49,7 +49,12 @@ function addSelectedItemToCart() {
   // TODO: get the quantity
   let quantity = Number(form.querySelector('#quantity').value);
   // TODO: using those, add one item to the Cart
-  cart.addItem(item, quantity);
+  let localCart = JSON.parse(localStorage.getItem('cart'));
+  // debugger;
+  if (localCart.length) {
+    cart.items = localCart.map(cartItem => new CartItem(cartItem.product, cartItem.quantity));
+    cart.addItem(item, quantity);
+  }
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
