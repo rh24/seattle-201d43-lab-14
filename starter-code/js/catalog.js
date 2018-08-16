@@ -18,7 +18,7 @@ function populateForm() {
   });
 }
 
-function createEl(type, content, id) {
+function createEl(type, content, id = null) {
   let el = document.createElement(type);
   el.textContent = content;
   el.id = id;
@@ -53,7 +53,16 @@ function addSelectedItemToCart() {
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
-function updateCounter() {}
+function updateCounter() {
+  // <span id="itemCount">
+  let cartCount = document.querySelector('#itemCount');
+  let cart = JSON.parse(localStorage.getItem('cart'));
+  if (!cartCount.querySelector('p')) {
+    cartCount.appendChild(createEl('p', cart.length));
+  } else {
+    cartCount.querySelector('p').textContent = cart.length;
+  }
+}
 
 // TODO: As you add items into the cart, show them (item & quantity) in the cart preview div
 function updateCartPreview() {
