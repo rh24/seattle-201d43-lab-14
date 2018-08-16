@@ -8,6 +8,8 @@ var Cart = function(items) {
 
 Cart.prototype.addItem = function(product, quantity) {
   // TODO: Fill in this instance method to create a new CartItem and add it to this.items
+  this.items.push(new CartItem(product, quantity));
+  debugger;
 };
 
 Cart.prototype.saveToLocalStorage = function() {
@@ -57,15 +59,3 @@ function generateCatalog() {
 
 // Initialize the app by creating the big list of products with images and names
 generateCatalog();
-
-const handleSubmit = (e) => {
-  let submitButton = document.querySelectorAll('input[type=submit]')[0];
-};
-
-function attachEventListeners() {
-  let submitButton = document.querySelectorAll('input[type=submit]')[0];
-
-  submitButton.addEventListener('click', () => handleSubmit(e));
-}
-
-generateDropdown();

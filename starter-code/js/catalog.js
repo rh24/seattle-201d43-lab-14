@@ -22,6 +22,7 @@ function createEl(type, content, id) {
   let el = document.createElement(type);
   el.textContent = content;
   el.id = id;
+  el.value = id;
 
   return el;
 }
@@ -38,14 +39,17 @@ function handleSubmit(event) {
   cart.saveToLocalStorage();
   updateCounter();
   updateCartPreview();
-
 }
 
 // TODO: Add the selected item and quantity to the cart
 function addSelectedItemToCart() {
+  let form = document.forms['catalog'];
   // TODO: suss out the item picked from the select list
+  let item = form.querySelector('#items').value;
   // TODO: get the quantity
+  let quantity = Number(form.querySelector('#quantity').value);
   // TODO: using those, add one item to the Cart
+  cart.addItem(item, quantity);
 }
 
 // TODO: Update the cart count in the header nav with the number of items in the Cart
