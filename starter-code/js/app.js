@@ -25,9 +25,10 @@ Cart.prototype.removeItem = function(item) {
   // TODO: Fill in this instance method to remove one item from the cart.
   // Note: You will have to decide what kind of parameter to pass in here!
   // let filtered = this.items.filter(item => (item.product !== item.product && item.quantity !== item.quantity));
-  let filtered = this.items.filter(item => item.product !== item.product);
+  let filtered = this.items.filter(cartItem => cartItem.product !== item.product);
   this.items = filtered;
-  let localCart = JSON.parse(localStorage.getItem('cart')).filter(item => item.product !== item.product);
+  let localCart = JSON.parse(localStorage.getItem('cart')).filter(cartItem => cartItem.product !== item.product);
+  // debugger;
   if (localCart) {
     localStorage.removeItem('cart');
   } else {

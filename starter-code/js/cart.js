@@ -40,7 +40,7 @@ function showCart() {
     quantityElm.innerText = item.quantity;
     var itemImg = document.createElement('img');
     var currentProduct = Product.allProducts.find(
-      elm => elm.name.toLowerCase() === item.product
+      elm => elm.name.replace(/\s+/g, '-').toLowerCase() === item.product
     );
     itemImg.src = currentProduct.filePath;
     itemImg.alt = `Photo of ${item.product}`;
