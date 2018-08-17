@@ -63,10 +63,11 @@ function updateCounter() {
   // <span id="itemCount">
   let cartCount = document.querySelector('#itemCount');
   let cart = JSON.parse(localStorage.getItem('cart'));
+  let totalItems = cart.reduce((acc, cartItem) => acc.quantity + cartItem.quantity);
   if (!cartCount.querySelector('p')) {
-    cartCount.appendChild(createEl('p', cart.length));
+    cartCount.appendChild(createEl('p', totalItems));
   } else {
-    cartCount.querySelector('p').textContent = cart.length;
+    cartCount.querySelector('p').textContent = totalItems;
   }
 }
 
