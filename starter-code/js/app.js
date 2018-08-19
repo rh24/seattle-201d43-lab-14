@@ -27,13 +27,7 @@ Cart.prototype.removeItem = function(item) {
   // let filtered = this.items.filter(item => (item.product !== item.product && item.quantity !== item.quantity));
   let filtered = this.items.filter(cartItem => cartItem.product !== item.product);
   this.items = filtered;
-  let localCart = JSON.parse(localStorage.getItem('cart')).filter(cartItem => cartItem.product !== item.product);
-  // debugger;
-  if (localCart) {
-    localStorage.removeItem('cart');
-  } else {
-    localStorage.setItem('cart', localCart);
-  }
+  this.saveToLocalStorage();
 };
 
 var CartItem = function(product, quantity) {
